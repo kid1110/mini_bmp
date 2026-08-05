@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include "bmp.h"
+#include "bmpinfo.h"
 int main(){
     int ret = create_bmp(
         "red.bmp",
@@ -13,9 +14,7 @@ int main(){
         printf("create bmp failed\n");
         return 1;
     }
-
-
     printf("create bmp success\n");
-
+    bmp_info("red.bmp");
     return 0;
 }
