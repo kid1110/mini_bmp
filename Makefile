@@ -1,8 +1,9 @@
-CC=clang
-CCFLAGS= -std=c17 -Wall -Wextra -Werror -g -IInclude
-TARGET=mini-image
+CC:=clang
+CCFLAGS?= -std=c17 -Wall -Wextra -Werror -g -IInclude
 
-SRC = \
+TARGET:=mini-image
+
+SRC := \
 	src/main.c \
 	src/bmp.c \
 	src/bmpinfo.c
@@ -11,6 +12,13 @@ OBJ = \
 	build/main.o \
 	build/bmp.o \
 	build/bmpinfo.o
+ifeq ($(OS),Windows_NT)
+	CC := gcc
+	RM:= del /Q
+	TARGET := $(TARGET).exe
+else
+	RM:= rm -f
+endif
 
 all: $(TARGET)
 
